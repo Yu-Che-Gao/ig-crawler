@@ -30,7 +30,6 @@ function requestAccessToken(req, res) {
         }
     }).then((body) => {
         console.log(body);
-        res.send(body);
         let json = JSON.parse(body);
         session({ access_token: json.access_token })
     }).then((result) => {
