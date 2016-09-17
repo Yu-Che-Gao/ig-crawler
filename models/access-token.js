@@ -1,6 +1,7 @@
 const session = require('express-session');
 const request = require('request');
 const requestPromise = require('request-promise');
+const cookieParser = require('cookie-parser');
 
 var clientId = 'd852506dbe7e48fb8c769a7b7065176f';
 var clientSecret = '870ada2892e54ec493683b8d71b83845';
@@ -30,9 +31,10 @@ function requestAccessToken(req, res) {
     }).then((body) => {
         console.log(body);
         res.send(body);
-        // let json = JSON.parse(body);
-        // session({ access_token: json.access_token })
-        // res.redirect('/');
+        let json = JSON.parse(body);
+        session({ access_token: json.access_token })
+    }).then((result) => {
+        res.redirect('/');
     })
 }
 
