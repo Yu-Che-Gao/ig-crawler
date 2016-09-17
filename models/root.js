@@ -1,7 +1,7 @@
 const session = require('express-session');
 
 function entrance(req, res) {
-    if (req.session.access_token) {
+    if (typeof (req.session.access_token) !== 'undefined') {
         let accessToken = req.session.access_token;
         res.send(accessToken);
     } else {
