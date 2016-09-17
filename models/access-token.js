@@ -1,14 +1,14 @@
-const session=require('express-session');
+const session = require('express-session');
 const request = require('request');
 const requestPromise = require('request-promise');
 
 var clientId = 'd852506dbe7e48fb8c769a7b7065176f';
 var clientSecret = '870ada2892e54ec493683b8d71b83845';
-var redirectUri = 'https://ig-crawler.herokuapp.com/callback';
+var redirectUri = 'https://ig-crawler.herokuapp.com';
 var code = '';
 
 function requestCode(req, res) {
-    res.redirect('https://instagram.com/oauth/authorize/?client_id=' + clientId + '&redirect_uri=' + redirectUri + '&response_type=code');
+    res.redirect('https://instagram.com/oauth/authorize/?client_id=' + clientId + '&redirect_uri=' + redirectUri + '/callback' + '&response_type=code');
 }
 
 function getCode(req, res) {
@@ -27,10 +27,10 @@ function requestAccessToken(req, res) {
             redirect_uri: redirectUri + '/getAccess',
             code: code
         }
-    }).then((body)=>{
+    }).then((body) => {
         console.log(body);
-        let json=JSON.parse(body);
-        session({ access_token:json.access_token })
+        let json = JSON.parse(body);
+        session({ access_token: json.access_token })
         res.redirect('/');
     })
 }
