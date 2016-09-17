@@ -31,7 +31,7 @@ function requestAccessToken(req, res) {
     }).then((body) => {
         console.log(body);
         let json = JSON.parse(body);
-        session({ access_token: json.access_token })
+        req.session.access_token=json.access_token;
     }).then((result) => {
         res.redirect('/');
     })
