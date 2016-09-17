@@ -23,7 +23,7 @@ function requestAccessToken(req, res) {
         form: {
             client_id: clientId,
             client_secret: clientSecret,
-            grant_type: authorization_code,
+            grant_type: 'authorization_code',
             redirect_uri: redirectUri + '/getAccess',
             code: code
         }
