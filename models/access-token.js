@@ -4,14 +4,14 @@ const requestPromise = require('request-promise');
 
 var clientId = 'd852506dbe7e48fb8c769a7b7065176f';
 var clientSecret = '870ada2892e54ec493683b8d71b83845';
-var redirectUri = 'https://ig-crawler.herokuapp.com';
+var redirectUri = 'https://ig-crawler.herokuapp.com/callback';
 var code = '';
 
 function requestCode(req, res) {
-    res.redirect('https://instagram.com/oauth/authorize/?client_id=' + clientId + '&redirect_uri=' + redirectUri + '/callback' + '&response_type=code');
+    res.redirect('https://instagram.com/oauth/authorize/?client_id=' + clientId + '&redirect_uri=' + redirectUri + '&response_type=code');
 }
 
-function getCode(req, res) {
+function getCodeOrToken(req, res) {
     code = req.query.code;
     res.redirect('/accessToken');
 }
@@ -24,7 +24,7 @@ function requestAccessToken(req, res) {
             client_id: clientId,
             client_secret: clientSecret,
             grant_type: 'authorization_code',
-            redirect_uri: redirectUri + '/getAccess',
+            redirect_uri: redirectUri,
             code: code
         }
     }).then((body) => {
@@ -36,5 +36,5 @@ function requestAccessToken(req, res) {
 }
 
 exports.requestCode = requestCode;
-exports.getCode = getCode;
+exports.getCodeOrToken = getCodeOrToken;
 exports.requestAccessToken = requestAccessToken;
