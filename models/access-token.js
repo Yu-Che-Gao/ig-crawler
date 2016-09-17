@@ -7,11 +7,7 @@ var redirectUri = 'https://ig-crawler.herokuapp.com/callback';
 var code = '';
 
 function requestCode(req, res) {
-    requestPromise('https://instagram.com/oauth/authorize/?client_id=' + clientId + '&redirect_uri=' + redirectUri + '&response_type=code').then((body) => {
-        res.send(body);
-    }).catch((error) => {
-        res.send(error);
-    })
+    res.redirect('https://instagram.com/oauth/authorize/?client_id=' + clientId + '&redirect_uri=' + redirectUri + '&response_type=code');
 }
 
 function getCode(req, res) {
