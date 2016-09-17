@@ -5,7 +5,7 @@ function entrance(req, res) {
         let accessToken = req.session.access_token;
         res.send(accessToken);
     } catch(e) {
-        res.redirect('/');
+        res.redirect('/token');
     }
 }
 
