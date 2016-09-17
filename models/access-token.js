@@ -1,6 +1,6 @@
 const session=require('express-session');
 const request = require('request');
-const requestPromise = require('request=promise');
+const requestPromise = require('request-promise');
 
 var clientId = 'd852506dbe7e48fb8c769a7b7065176f';
 var clientSecret = '870ada2892e54ec493683b8d71b83845';

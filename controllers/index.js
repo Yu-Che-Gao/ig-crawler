@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const session = require('session');
 const accessToken = require('../models/access-token.js');
 const root = require('../models/root.js');
 
