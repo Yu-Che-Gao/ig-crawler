@@ -1,8 +1,8 @@
 const session = require('express-session');
 
 function entrance(req, res) {
-    let accessToken = req.session.access_token;
-    if (accessToken) {
+    if (req.session.access_token) {
+        let accessToken = req.session.access_token;
         res.send(accessToken);
     } else {
         res.redirect('/token');
